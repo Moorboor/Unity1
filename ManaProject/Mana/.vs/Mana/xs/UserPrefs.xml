@@ -1,0 +1,16 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Testing.cs">
+    <Files>
+      <File FileName="Assets/Scripts/BattleHandler.cs" Line="17" Column="2" />
+      <File FileName="Assets/Scripts/GridCombatSystem.cs" Line="19" Column="96" />
+      <File FileName="Assets/Scripts/Grid.cs" Line="17" Column="31" />
+      <File FileName="Assets/Testing.cs" Line="7" Column="18" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
