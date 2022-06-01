@@ -4,27 +4,91 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
-    private Grid grid;
+    private Grid<TGridObject> grid;
+
+    [SerializeField] private Camera mainCamera;
+    [SerializeField] private LayerMask layerMask;
 
     public void Start()
     {
-        grid = new Grid(4, 5, 10f);
+        grid = new Grid<TGridObject>(10, 10, 5f, Vector3.zero, (Grid<TGridObject> g, int x, int z) => new TGridObject(g, x, z));
     }
 
     public void Update()
     {
+        float speed = 10f;
+        float moveX = 0f;
+        float moveZ = 0f;
         if (Input.GetMouseButtonDown(0))
         {
-            grid.SetValue(GetMouseWorldPosition(), 22);
+            TGridObject tGridObject = grid.GetGridObject(GetMouseWorldPosition());
+            if (tGridObject != null)
+            {
+                tGridObject.AddValue(20);
+            }
         }
+
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            moveZ += 1f;
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            moveZ += -1f;
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            moveX += 1f;
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            moveX += -1f;
+        }
+        transform.position += new Vector3(moveX, 0, moveZ) * speed * Time.deltaTime;
     }
 
-    public static Vector3 GetMouseWorldPosition()
+    public Vector3 GetMouseWorldPosition()
     {
-        //Vector3 worldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 worldPosition = Input.mousePosition;
-        Debug.Log(worldPosition.x + " " + worldPosition.y + " " + worldPosition.z);
-        worldPosition.y = 0f;
-        return worldPosition;
+        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, layerMask))
+        {
+            transform.position = raycastHit.point;
+            Debug.Log(raycastHit.point);
+            return raycastHit.point;
+        } else
+        {
+            return Vector3.zero;
+        }
+    }
+}
+
+public class TGridObject
+{
+    private Grid<TGridObject> grid;
+    private int x;
+    private int z;
+    public int value;
+
+    public TGridObject(Grid<TGridObject> grid, int x, int z)
+    {
+        this.grid = grid;
+        this.x = x;
+        this.z = z;
+    }
+    public void AddValue(int addValue)
+    {
+        value += addValue;
+        grid.TriggerGridObjectChanged(x, z);
+    }
+
+    public float GetValuenormalized()
+    {
+        return (float)value;
+    }
+
+    public override string ToString()
+    {
+        return value.ToString();
     }
 }

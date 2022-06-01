@@ -27,6 +27,7 @@ public class Mouse3D : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, mouseColliderLayerMask)) {
+            
             return raycastHit.point;
         } else
         {
