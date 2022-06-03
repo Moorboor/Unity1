@@ -76,6 +76,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
+    <Compile Include="Assets/GridCombatSystem.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionUpdater.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionTimer.cs" />
@@ -110,7 +111,9 @@
     <Compile Include="Assets/CodeMonkey/CMDebug.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionPeriodic.cs" />
-    <Compile Include="Assets/GridCombatSystem.cs" />
+    <Compile Include="Assets/Scripts/Pathfinding.cs" />
+    <Compile Include="Assets/Scripts/PathNode.cs" />
+    <Compile Include="Assets/Scripts/TestingPathfinding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />
