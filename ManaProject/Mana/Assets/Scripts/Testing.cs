@@ -19,6 +19,8 @@ public class Testing : MonoBehaviour
         float speed = 10f;
         float moveX = 0f;
         float moveZ = 0f;
+
+        // Testing
         if (Input.GetMouseButtonDown(0))
         {
             TGridObject tGridObject = grid.GetGridObject(GetMouseWorldPosition());
@@ -27,7 +29,6 @@ public class Testing : MonoBehaviour
                 tGridObject.AddValue(20);
             }
         }
-
 
         if (Input.GetKey(KeyCode.W))
         {

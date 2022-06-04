@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grid <TGridObject> : MonoBehaviour
+public class Grid <TGridObject>
 {
     public event EventHandler<OnGridObjectChangedEventArgs> OnGridObjectChanged;
     public class OnGridObjectChangedEventArgs: EventArgs
@@ -62,13 +62,20 @@ public class Grid <TGridObject> : MonoBehaviour
             };
         }
     }
-
+    public int GetHeight()
+    {
+        return height;
+    }
+    public int GetWidth()
+    {
+        return width;
+    }
     private Vector3 GetWorldPosition(int x, int z)
     {
         return new Vector3(x, 0, z) * cellSize + originPosition;
     }
 
-    private void GetXZ(Vector3 worldPosition, out int x, out int z)
+    public void GetXZ(Vector3 worldPosition, out int x, out int z)
     {
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         z = Mathf.FloorToInt((worldPosition - originPosition).z / cellSize);
