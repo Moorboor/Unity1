@@ -2,34 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class TestingPathfinding : MonoBehaviour
 {
-    private Pathfinding pathfinding;
 
     [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask layerMask;
+    [SerializeField] private TestingHostilePathfinding testingHostilePathfinding;
+    [SerializeField] private CharacterController controller;
+
+    private State state;
+    private Pathfinding pathfinding;
+
+    private enum State
+    {
+        WaitingForPlayer,
+        Busy,
+    }
 
     private void Start()
     {
-        pathfinding = new Pathfinding(10, 10);
+        pathfinding = new Pathfinding(20, 20);
+        state = State.WaitingForPlayer;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (state == State.WaitingForPlayer)
         {
-            Vector3 mouseWorldPosition = GetMouseWorldPosition();
-            pathfinding.GetGrid().GetXZ(mouseWorldPosition, out int x, out int z);
-            List<PathNode> path = pathfinding.FindPath(0, 0, x, z);
-            if (path != null)
+            if (Input.GetAxis("Horizontal") > 0)
             {
-                for (int i = 0; i < path.Count-1; i++)
-                {
-                    Debug.DrawLine(new Vector3(path[i].x, -1f, path[i].z) * 10f + Vector3.one * 5f, new Vector3(path[i + 1].x,-1f, path[i + 1].z) * 10f + Vector3.one * 5f, Color.green, 100f);
-                }
+                Vector3 moveY = new Vector3 (pathfinding.GetGrid().GetCellSize(), 0, 0);
+                pathfinding.GetGrid().GetXZ(GetPosition()+moveY, out int x, out int z);
+
+                //pathfinding.GetGrid().SetGridObject(new Vector3(x, ))
+                controller.Move(moveY * Time.deltaTime);
+                state = State.Busy;
             }
+
+
+            
+
+        } else
+        {
+            testingHostilePathfinding.SetTargetPosition(GetMouseWorldPosition());
+            state = State.WaitingForPlayer;
         }
+    }   
+
+    public Vector3 GetPosition()
+    {
+        return transform.position;
     }
+
     public Vector3 GetMouseWorldPosition()
     {
         Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);

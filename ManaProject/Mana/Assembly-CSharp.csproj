@@ -62,6 +62,7 @@
     <Compile Include="Assets/CodeMonkey/Utils/World_Mesh.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/UI_TextComplex.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/Button_Sprite.cs" />
+    <Compile Include="Assets/Scripts/PathNode.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark02.cs" />
     <Compile Include="Assets/CodeMonkey/MonoBehaviours/CameraFollowSetup.cs" />
     <Compile Include="Assets/CodeMonkey/MonoBehaviours/CameraFollow.cs" />
@@ -76,9 +77,9 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark03.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeA.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
-    <Compile Include="Assets/GridCombatSystem.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionUpdater.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
+    <Compile Include="Assets/Scripts/TestingHostilePathfinding.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionTimer.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Assets/Scripts/Testing.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/UI_Bar.cs" />
+    <Compile Include="Assets/Scripts/Pathfinding.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
     <Compile Include="Assets/Scripts/Grid.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/CodeMonkey/MonoBehaviours/ComponentActions.cs" />
+    <Compile Include="Assets/Scripts/TestingPathfinding.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/UI_Sprite.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
@@ -111,9 +114,6 @@
     <Compile Include="Assets/CodeMonkey/CMDebug.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionPeriodic.cs" />
-    <Compile Include="Assets/Scripts/Pathfinding.cs" />
-    <Compile Include="Assets/Scripts/PathNode.cs" />
-    <Compile Include="Assets/Scripts/TestingPathfinding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

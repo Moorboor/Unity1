@@ -11,6 +11,7 @@ public class PathNode
     public int gCost;
     public int hCost;
     public int fCost;
+    public bool isWalkable;
 
     public PathNode cameFromNode;
 
@@ -19,6 +20,7 @@ public class PathNode
         this.grid = grid;
         this.x = x;
         this.z = z;
+        this.isWalkable = true;
     }
 
     public void CalculateFCost()
