@@ -93,6 +93,7 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextSelector_B.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/EnvMapAnimator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_UiFrameRateCounter.cs" />
+    <Compile Include="Assets/Scripts/MouseLook.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/CodeMonkey/MonoBehaviours/ComponentActions.cs" />
     <Compile Include="Assets/Scripts/TestingPathfinding.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="Assets/CodeMonkey/CMDebug.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionPeriodic.cs" />
-    <Compile Include="Assets/Scripts/MouseLook.cs" />
+    <Compile Include="Assets/Scripts/BattleHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

@@ -36,7 +36,7 @@ public class TestingHostilePathfinding : MonoBehaviour
 
     public Vector3 GetPosition()
     {
-        return new Vector3(transform.position.x, 0, transform.position.z);
+        return transform.position;
     }
 
     private void HandleMovement(Action onMovementComplete)
@@ -46,13 +46,12 @@ public class TestingHostilePathfinding : MonoBehaviour
 
         if (pathVectorList != null)
         {
-            Vector3 targetPosition = pathVectorList[0];
-            Vector3 currentPosition = new Vector3(transform.position.x, 0, transform.position.z);
-            float reachDistance = Vector3.Distance(targetPosition, currentPosition);
+            Vector3 targetPosition = new Vector3(pathVectorList[0].x, transform.position.y, pathVectorList[0].z);
+            float reachDistance = Vector3.Distance(targetPosition, GetPosition());
             if (reachDistance > 1f)
             {
-                Vector3 moveDir = (targetPosition - currentPosition).normalized;
-                transform.position = currentPosition + moveDir * speed * Time.deltaTime;
+                Vector3 moveDir = (targetPosition - GetPosition()).normalized;
+                transform.position = GetPosition() + moveDir * speed * Time.deltaTime;
             } else
             {
                 transform.position = targetPosition;

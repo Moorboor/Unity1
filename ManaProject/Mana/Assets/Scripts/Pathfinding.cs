@@ -15,10 +15,10 @@ public class Pathfinding
 
 
     // Constructor 
-    public Pathfinding(int width, int height)
+    public Pathfinding(int width, int height, int cellSize)
     {
         Instance = this;
-        grid = new Grid<PathNode>(width, height, 10f, Vector3.zero, (Grid<PathNode> g, int x, int z) => new PathNode(g, x, z));
+        grid = new Grid<PathNode>(width, height, cellSize, Vector3.zero, (Grid<PathNode> g, int x, int z) => new PathNode(g, x, z));
     }
 
     public Grid<PathNode> GetGrid()

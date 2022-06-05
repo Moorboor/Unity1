@@ -6,8 +6,6 @@ using UnityEngine;
 public class TestingPathfinding : MonoBehaviour
 {
 
-    [SerializeField] private Camera mainCamera;
-    [SerializeField] private LayerMask layerMask;
     [SerializeField] private TestingHostilePathfinding testingHostilePathfinding;
     [SerializeField] private TestingHostilePathfinding testPlayerPathfinding;
 
@@ -22,7 +20,7 @@ public class TestingPathfinding : MonoBehaviour
 
     private void Start()
     {
-        pathfinding = new Pathfinding(20, 20);
+        pathfinding = new Pathfinding(20, 20, 10);
         state = State.WaitingForPlayer;
     }
 
@@ -32,32 +30,31 @@ public class TestingPathfinding : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") > 0)
             {
+                state = State.Busy;
                 Vector3 moveX = new Vector3 (pathfinding.GetGrid().GetCellSize(), 0, 0);
                 //pathfinding.GetGrid().GetXZ(GetPosition()+moveZ, out int x, out int z);
                 testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX);
-                state = State.Busy;
+  
             }
             if (Input.GetAxis("Horizontal") < 0)
             {
+                state = State.Busy;
                 Vector3 moveX = new Vector3(-pathfinding.GetGrid().GetCellSize(), 0, 0);
                 testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX);
-                state = State.Busy;
             }
             if (Input.GetAxis("Vertical") > 0)
             {
+                state = State.Busy;
                 Vector3 moveZ = new Vector3(0, 0, pathfinding.GetGrid().GetCellSize());
                 testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ);
-                state = State.Busy;
             }
             if (Input.GetAxis("Vertical") < 0)
             {
+                state = State.Busy;
                 Vector3 moveZ = new Vector3(0, 0, -pathfinding.GetGrid().GetCellSize());
                 testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ);
-                state = State.Busy;
+
             }
-
-
-
 
         } else
         {
@@ -65,23 +62,4 @@ public class TestingPathfinding : MonoBehaviour
             state = State.WaitingForPlayer;
         }
     }   
-
-    public Vector3 GetPosition()
-    {
-        return transform.position;
-    }
-
-    public Vector3 GetMouseWorldPosition()
-    {
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, layerMask))
-        {
-            transform.position = raycastHit.point;
-            return raycastHit.point;
-        }
-        else
-        {
-            return Vector3.zero;
-        }
-    }
 }

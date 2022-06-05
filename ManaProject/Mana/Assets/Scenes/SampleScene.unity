@@ -319,9 +319,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204664891}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.5, y: 0.76, z: 26.1}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.97, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 1.37}
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 1110518197}
@@ -451,10 +451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddc741c521db49b593939f09c08e5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 963194227}
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 8
   testingHostilePathfinding: {fileID: 1303581879}
   testPlayerPathfinding: {fileID: 204664892}
 --- !u!4 &356989059
@@ -673,7 +669,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4, z: 0}
+  m_LocalPosition: {x: 0, y: 0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 204664896}
@@ -717,7 +713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110518196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20.7, y: 0.69, z: 17.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 204664896}
@@ -827,8 +823,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1303581878}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 119.2, y: 3.45, z: 162.1}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalPosition: {x: 119.2, y: 2.95, z: 162.1}
+  m_LocalScale: {x: 2, y: 2.93, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -873,7 +869,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1506281109}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -885,7 +881,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 22262639920f43d6be32430e4e58350d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
