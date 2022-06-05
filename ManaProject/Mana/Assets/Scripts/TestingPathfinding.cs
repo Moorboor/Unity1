@@ -9,7 +9,7 @@ public class TestingPathfinding : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private TestingHostilePathfinding testingHostilePathfinding;
-    [SerializeField] private CharacterController controller;
+    [SerializeField] private TestingHostilePathfinding testPlayerPathfinding;
 
     private State state;
     private Pathfinding pathfinding;
@@ -32,20 +32,36 @@ public class TestingPathfinding : MonoBehaviour
         {
             if (Input.GetAxis("Horizontal") > 0)
             {
-                Vector3 moveY = new Vector3 (pathfinding.GetGrid().GetCellSize(), 0, 0);
-                pathfinding.GetGrid().GetXZ(GetPosition()+moveY, out int x, out int z);
-
-                //pathfinding.GetGrid().SetGridObject(new Vector3(x, ))
-                controller.Move(moveY * Time.deltaTime);
+                Vector3 moveX = new Vector3 (pathfinding.GetGrid().GetCellSize(), 0, 0);
+                //pathfinding.GetGrid().GetXZ(GetPosition()+moveZ, out int x, out int z);
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX);
+                state = State.Busy;
+            }
+            if (Input.GetAxis("Horizontal") < 0)
+            {
+                Vector3 moveX = new Vector3(-pathfinding.GetGrid().GetCellSize(), 0, 0);
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX);
+                state = State.Busy;
+            }
+            if (Input.GetAxis("Vertical") > 0)
+            {
+                Vector3 moveZ = new Vector3(0, 0, pathfinding.GetGrid().GetCellSize());
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ);
+                state = State.Busy;
+            }
+            if (Input.GetAxis("Vertical") < 0)
+            {
+                Vector3 moveZ = new Vector3(0, 0, -pathfinding.GetGrid().GetCellSize());
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ);
                 state = State.Busy;
             }
 
 
-            
+
 
         } else
         {
-            testingHostilePathfinding.SetTargetPosition(GetMouseWorldPosition());
+            testingHostilePathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition());
             state = State.WaitingForPlayer;
         }
     }   

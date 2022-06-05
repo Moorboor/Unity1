@@ -48,8 +48,8 @@ public class TestingHostilePathfinding : MonoBehaviour
         {
             Vector3 targetPosition = pathVectorList[0];
             Vector3 currentPosition = new Vector3(transform.position.x, 0, transform.position.z);
-            float distance = Vector3.Distance(targetPosition, currentPosition);
-            if (distance > 1f)
+            float reachDistance = Vector3.Distance(targetPosition, currentPosition);
+            if (reachDistance > 1f)
             {
                 Vector3 moveDir = (targetPosition - currentPosition).normalized;
                 transform.position = currentPosition + moveDir * speed * Time.deltaTime;
