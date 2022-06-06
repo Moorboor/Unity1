@@ -16,6 +16,7 @@ public class TestingPathfinding : MonoBehaviour
     {
         WaitingForPlayer,
         Busy,
+        WaitingForHostile,
     }
 
     private void Start()
@@ -33,33 +34,34 @@ public class TestingPathfinding : MonoBehaviour
                 state = State.Busy;
                 Vector3 moveX = new Vector3 (pathfinding.GetGrid().GetCellSize(), 0, 0);
                 //pathfinding.GetGrid().GetXZ(GetPosition()+moveZ, out int x, out int z);
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX);
-  
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX, () => { });
             }
             if (Input.GetAxis("Horizontal") < 0)
             {
                 state = State.Busy;
                 Vector3 moveX = new Vector3(-pathfinding.GetGrid().GetCellSize(), 0, 0);
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX);
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX, () => { }); 
             }
             if (Input.GetAxis("Vertical") > 0)
             {
                 state = State.Busy;
                 Vector3 moveZ = new Vector3(0, 0, pathfinding.GetGrid().GetCellSize());
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ);
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ, () => { });
             }
             if (Input.GetAxis("Vertical") < 0)
             {
                 state = State.Busy;
                 Vector3 moveZ = new Vector3(0, 0, -pathfinding.GetGrid().GetCellSize());
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ);
-
+                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ, () => { });
             }
-
-        } else
+        }
+        if (state == State.Busy)
         {
-            testingHostilePathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition());
-            state = State.WaitingForPlayer;
+            state = State.WaitingForHostile;
+            testingHostilePathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition(), () =>
+            {
+                state = State.WaitingForPlayer;
+            });
         }
     }   
 }

@@ -37,9 +37,14 @@ public class Pathfinding
             return null;
         } else
         {
-            Vector3 pathNode = new Vector3(path[1].x, 0, path[1].z) * grid.GetCellSize() + new Vector3(1,0,1) * grid.GetCellSize() * 0.5f;
-            List<Vector3> pathTargetField = new List<Vector3> { pathNode };
-            return pathTargetField;
+            List<Vector3> vectorPath = new List<Vector3>();
+            foreach (PathNode pathNode in path)
+            {
+                vectorPath.Add(new Vector3(pathNode.x, 0, pathNode.z) * grid.GetCellSize() + new Vector3(1, 0, 1) * grid.GetCellSize() * 0.5f);
+            }
+            //Vector3 pathNode = new Vector3(path[1].x, 0, path[1].z) * grid.GetCellSize() + new Vector3(1,0,1) * grid.GetCellSize() * 0.5f;
+            //List<Vector3> pathTargetField = new List<Vector3> { pathNode };
+            return vectorPath;
         }
     }
 
