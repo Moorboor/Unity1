@@ -15,7 +15,7 @@ public class Pathfinding
 
 
     // Constructor 
-    public Pathfinding(int width, int height, int cellSize)
+    public Pathfinding(int width, int height, float cellSize)
     {
         Instance = this;
         grid = new Grid<PathNode>(width, height, cellSize, Vector3.zero, (Grid<PathNode> g, int x, int z) => new PathNode(g, x, z));
@@ -42,8 +42,6 @@ public class Pathfinding
             {
                 vectorPath.Add(new Vector3(pathNode.x, 0, pathNode.z) * grid.GetCellSize() + new Vector3(1, 0, 1) * grid.GetCellSize() * 0.5f);
             }
-            //Vector3 pathNode = new Vector3(path[1].x, 0, path[1].z) * grid.GetCellSize() + new Vector3(1,0,1) * grid.GetCellSize() * 0.5f;
-            //List<Vector3> pathTargetField = new List<Vector3> { pathNode };
             return vectorPath;
         }
     }
@@ -86,7 +84,6 @@ public class Pathfinding
             foreach (PathNode neighbourNode in GetNeighboursList(currentNode))
             {
                 if (closedList.Contains(neighbourNode)) continue;
-
                 if (!neighbourNode.isWalkable)
                 {
                     closedList.Add(neighbourNode);
@@ -111,7 +108,7 @@ public class Pathfinding
         return null;
 
     }
-    private List<PathNode> GetNeighboursList(PathNode currentNode)
+    public List<PathNode> GetNeighboursList(PathNode currentNode)
     {
         List<PathNode> neighboursList = new List<PathNode>(); // list instantiation with ()
 
@@ -147,7 +144,7 @@ public class Pathfinding
         return neighboursList;
     }
 
-    private PathNode GetNode(int x, int z)
+    public PathNode GetNode(int x, int z)
     {
         return grid.GetGridObject(x, z);
     }

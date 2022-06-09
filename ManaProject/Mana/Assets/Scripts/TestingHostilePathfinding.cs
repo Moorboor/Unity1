@@ -8,13 +8,16 @@ public class TestingHostilePathfinding : MonoBehaviour
 
     private const float speed = 20f;
     private List<Vector3> pathVectorList;
+    private List<PathNode> pathNodeList;
     private Action onMovementComplete;
     private State state;
+    private string target;
 
     private enum State
     {
         Idle,
-        Moving,
+        MovingToPlayer,
+        PlayerMoving,
     }
 
     private void Start()
@@ -26,11 +29,14 @@ public class TestingHostilePathfinding : MonoBehaviour
     {
         switch (state)
         {
-        case State.Idle:
-            break;
-        case State.Moving:
-            HandleMovement(onMovementComplete);
-            break;
+            case State.Idle:
+                break;
+            case State.MovingToPlayer:
+                HandleHostileMovement(onMovementComplete);
+                break;
+            case State.PlayerMoving:
+                HandlePlayerMovement(onMovementComplete);
+                break;
         }
     }
 
@@ -39,7 +45,35 @@ public class TestingHostilePathfinding : MonoBehaviour
         return transform.position;
     }
 
-    private void HandleMovement(Action onMovementComplete)
+    private void HandleHostileMovement(Action onMovementComplete)
+    {
+
+        if (pathVectorList.Count > 2)
+        {
+            Vector3 targetPosition = new Vector3(pathVectorList[1].x, transform.position.y, pathVectorList[1].z);
+            float reachedDistance = Vector3.Distance(targetPosition, GetPosition());
+
+            if (reachedDistance > 1f)
+            {
+                Vector3 moveDir = (targetPosition - GetPosition()).normalized;
+                transform.position = GetPosition() + moveDir * speed * Time.deltaTime;
+            }
+            else
+            {
+                transform.position = targetPosition;
+                onMovementComplete();
+                state = State.Idle;
+
+            }
+        }
+        else
+        {
+            onMovementComplete();
+            state = State.Idle;
+        }
+    }
+
+    private void HandlePlayerMovement(Action onMovementComplete)
     {
 
         if (pathVectorList.Count > 1)
@@ -60,20 +94,36 @@ public class TestingHostilePathfinding : MonoBehaviour
 
             }
         }
+
+    }
+    private void Attack(Action onMovementComplete)
+    {
+
     }
 
 
-    public void SetTargetPosition(Vector3 targetPosition, Action onMovementComplete)
+    public void SetTargetPosition(string target, Vector3 targetPosition, int startX, int startZ, int endX, int endZ,  Action onMovementComplete)
     {
-        // Move one node towards target
         this.onMovementComplete = onMovementComplete;
+        this.target = target;
         pathVectorList = Pathfinding.Instance.FindPath(GetPosition(), targetPosition);
-        Debug.Log(pathVectorList.Count);
-        state = State.Moving;
+        pathNodeList = Pathfinding.Instance.FindPath(startX, startZ, endX, endZ);
+
+        //currentNode = pathNodeList[0];
+        for (int i=0; i<2; i++)
+        {
+        }
+        state = State.MovingToPlayer;
 
 
         // if player not in sight, move in direction to node with highest fCost --> Exploring
 
+    }
+    public void SetPlayerPosition(Vector3 targetPosition, Action onMovementComplete)
+    {
+        this.onMovementComplete = onMovementComplete;
+        pathVectorList = Pathfinding.Instance.FindPath(GetPosition(), targetPosition);
+        state = State.PlayerMoving;
     }
 
 }

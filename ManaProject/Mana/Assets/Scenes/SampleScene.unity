@@ -451,8 +451,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddc741c521db49b593939f09c08e5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testingHostilePathfinding: {fileID: 1303581879}
-  testPlayerPathfinding: {fileID: 204664892}
+  hostilePathfinding: {fileID: 1303581879}
+  playerPathfinding: {fileID: 204664892}
 --- !u!4 &356989059
 Transform:
   m_ObjectHideFlags: 0

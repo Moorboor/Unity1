@@ -6,8 +6,8 @@ using UnityEngine;
 public class TestingPathfinding : MonoBehaviour
 {
 
-    [SerializeField] private TestingHostilePathfinding testingHostilePathfinding;
-    [SerializeField] private TestingHostilePathfinding testPlayerPathfinding;
+    [SerializeField] private TestingHostilePathfinding hostilePathfinding;
+    [SerializeField] private TestingHostilePathfinding playerPathfinding;
 
     private State state;
     private Pathfinding pathfinding;
@@ -21,7 +21,7 @@ public class TestingPathfinding : MonoBehaviour
 
     private void Start()
     {
-        pathfinding = new Pathfinding(20, 20, 10);
+        pathfinding = new Pathfinding(40, 40, 10f);
         state = State.WaitingForPlayer;
     }
 
@@ -29,37 +29,55 @@ public class TestingPathfinding : MonoBehaviour
     {
         if (state == State.WaitingForPlayer)
         {
+            pathfinding.GetGrid().GetXZ(playerPathfinding.GetPosition(), out int x, out int z);
+            //neighbourNodeList = pathfinding.GetNeighboursList(pathfinding.GetNode(x, z));
+
             if (Input.GetAxis("Horizontal") > 0)
             {
                 state = State.Busy;
+                PathNode pathNode = pathfinding.GetGrid().GetGridObject(x, z);
+                pathNode.ClearAgent("Player");
                 Vector3 moveX = new Vector3 (pathfinding.GetGrid().GetCellSize(), 0, 0);
-                //pathfinding.GetGrid().GetXZ(GetPosition()+moveZ, out int x, out int z);
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX, () => { });
+                playerPathfinding.SetPlayerPosition(playerPathfinding.GetPosition() + moveX, () =>
+                {
+                    pathfinding.GetGrid().GetXZ(playerPathfinding.GetPosition(), out int x, out int z);
+                    PathNode pathNode = pathfinding.GetGrid().GetGridObject(x, z);
+                    pathNode.SetAgent("Player");
+                });
             }
             if (Input.GetAxis("Horizontal") < 0)
             {
                 state = State.Busy;
                 Vector3 moveX = new Vector3(-pathfinding.GetGrid().GetCellSize(), 0, 0);
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveX, () => { }); 
+                playerPathfinding.SetPlayerPosition(playerPathfinding.GetPosition() + moveX, () => { }); 
             }
             if (Input.GetAxis("Vertical") > 0)
             {
                 state = State.Busy;
                 Vector3 moveZ = new Vector3(0, 0, pathfinding.GetGrid().GetCellSize());
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ, () => { });
+                playerPathfinding.SetPlayerPosition(playerPathfinding.GetPosition() + moveZ, () => { });
             }
             if (Input.GetAxis("Vertical") < 0)
             {
                 state = State.Busy;
                 Vector3 moveZ = new Vector3(0, 0, -pathfinding.GetGrid().GetCellSize());
-                testPlayerPathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition() + moveZ, () => { });
+                playerPathfinding.SetPlayerPosition(playerPathfinding.GetPosition() + moveZ, () => { });
             }
         }
         if (state == State.Busy)
         {
             state = State.WaitingForHostile;
-            testingHostilePathfinding.SetTargetPosition(testPlayerPathfinding.GetPosition(), () =>
+
+            pathfinding.GetGrid().GetXZ(hostilePathfinding.GetPosition(), out int startX, out int startZ);
+            PathNode pathNode = pathfinding.GetGrid().GetGridObject(startX, startZ);
+            pathNode.ClearAgent("CylinderHostile");
+
+            pathfinding.GetGrid().GetXZ(playerPathfinding.GetPosition(), out int endX, out int endZ);
+            hostilePathfinding.SetTargetPosition("Player", playerPathfinding.GetPosition(), startX, startZ, endX, endZ, () =>
             {
+                pathfinding.GetGrid().GetXZ(hostilePathfinding.GetPosition(), out int x, out int z);
+                PathNode pathNode = pathfinding.GetGrid().GetGridObject(x, z);
+                pathNode.SetAgent("CylinderHostile");
                 state = State.WaitingForPlayer;
             });
         }

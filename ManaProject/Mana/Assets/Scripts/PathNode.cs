@@ -11,6 +11,8 @@ public class PathNode
     public int gCost;
     public int hCost;
     public int fCost;
+
+    public IDictionary<string, bool> agentDic = new Dictionary<string, bool>();
     public bool isWalkable;
 
     public PathNode cameFromNode;
@@ -20,7 +22,34 @@ public class PathNode
         this.grid = grid;
         this.x = x;
         this.z = z;
-        this.isWalkable = true;
+        isWalkable = true;
+    }
+    public void SetIsWalkable(bool isWalkable)
+    {
+        this.isWalkable = isWalkable;
+        grid.TriggerGridObjectChanged(x, z);
+    }
+
+    public void SetAgent(string agent)
+    {
+        if (!agentDic.ContainsKey(agent))
+        {
+            agentDic.Add(agent, true);
+        }  
+        else
+        {
+            agentDic[agent] = true;
+        }
+        grid.TriggerGridObjectChanged(x, z);
+    }
+
+    public void ClearAgent(string agent)
+    {
+        if (agentDic.ContainsKey(agent))
+        {
+            agentDic[agent] = false;
+            grid.TriggerGridObjectChanged(x, z);
+        }
     }
 
     public void CalculateFCost()
@@ -30,6 +59,22 @@ public class PathNode
 
     public override string ToString()
     {
-        return x + "," + z;
+        bool value;
+
+        if (agentDic.TryGetValue("CylinderHostile", out value))
+        {
+            if (agentDic["CylinderHostile"] == true)
+            {
+                return x + "," + z + " CylinderHostile";
+            }
+            else
+            {
+                return x + "," + z;
+            }
+        }
+        else
+        {
+            return x + "," + z;
+        }
     }
 }
