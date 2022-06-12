@@ -27,6 +27,7 @@ public class TestingPathfinding : MonoBehaviour
 
     private void Update()
     {
+        // Player turn:
         if (state == State.WaitingForPlayer)
         {
             pathfinding.GetGrid().GetXZ(playerPathfinding.GetPosition(), out int x, out int z);
@@ -64,6 +65,7 @@ public class TestingPathfinding : MonoBehaviour
                 playerPathfinding.SetPlayerPosition(playerPathfinding.GetPosition() + moveZ, () => { });
             }
         }
+        // Hostile turn:
         if (state == State.Busy)
         {
             state = State.WaitingForHostile;

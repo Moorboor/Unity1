@@ -109,10 +109,12 @@ public class TestingHostilePathfinding : MonoBehaviour
         pathVectorList = Pathfinding.Instance.FindPath(GetPosition(), targetPosition);
         pathNodeList = Pathfinding.Instance.FindPath(startX, startZ, endX, endZ);
 
+        // Attack Player:
         //currentNode = pathNodeList[0];
         for (int i=0; i<2; i++)
         {
         }
+        // Move to Player
         state = State.MovingToPlayer;
 
 

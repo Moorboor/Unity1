@@ -1,12 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/BattleHandler.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TestingPathfinding.cs">
     <Files>
-      <File FileName="Assets/Scripts/TestingPathfinding.cs" Line="33" Column="15" IsPinned="True" />
-      <File FileName="Assets/Scripts/TestingHostilePathfinding.cs" Line="72" Column="32" />
-      <File FileName="Assets/Scripts/Pathfinding.cs" Line="118" Column="28" />
-      <File FileName="Assets/Scripts/PathNode.cs" Line="52" Column="10" />
-      <File FileName="Assets/Scripts/Grid.cs" Line="77" Column="12" />
-      <File FileName="Assets/Scripts/BattleHandler.cs" Line="37" Column="10" />
+      <File FileName="Assets/Scripts/TestingPathfinding.cs" Line="33" Column="78" IsPinned="True" />
+      <File FileName="Assets/Scripts/TestingHostilePathfinding.cs" Line="118" Column="29" />
+      <File FileName="Assets/Scripts/Pathfinding.cs" />
+      <File FileName="Assets/Scripts/PathNode.cs" />
+      <File FileName="Assets/Scripts/Grid.cs" />
+      <File FileName="Assets/Scripts/BattleHandler.cs" />
+      <File FileName="Assets/Scripts/GameManager.cs" Line="31" Column="60" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
