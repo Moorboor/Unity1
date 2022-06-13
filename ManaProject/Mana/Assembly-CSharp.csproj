@@ -79,13 +79,14 @@
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/Benchmark04.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionUpdater.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_FrameRateCounter.cs" />
-    <Compile Include="Assets/Scripts/TestingHostilePathfinding.cs" />
+    <Compile Include="Assets/Scripts/CharacterBattle.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionTimer.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/ChatController.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexJitter.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TextMeshProFloatingText.cs" />
     <Compile Include="Assets/Scripts/Testing.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventHandler.cs" />
+    <Compile Include="Assets/Scripts/GameManager.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/UI_Bar.cs" />
     <Compile Include="Assets/Scripts/Pathfinding.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexShakeB.cs" />
@@ -96,13 +97,12 @@
     <Compile Include="Assets/Scripts/MouseLook.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/CameraController.cs" />
     <Compile Include="Assets/CodeMonkey/MonoBehaviours/ComponentActions.cs" />
-    <Compile Include="Assets/Scripts/TestingPathfinding.cs" />
+    <Compile Include="Assets/Scripts/BattleHandler.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/UI_Sprite.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/DropdownSample.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/VertexColorCycler.cs" />
-    <Compile Include="Assets/Scripts/BattleHandler.cs" />
     <Compile Include="Assets/Scripts/Mouse3D.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/UI_BarMultiple.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TeleType.cs" />
@@ -116,7 +116,6 @@
     <Compile Include="Assets/CodeMonkey/CMDebug.cs" />
     <Compile Include="Assets/TextMesh Pro/Examples &amp; Extras/Scripts/TMP_TextEventCheck.cs" />
     <Compile Include="Assets/CodeMonkey/Utils/FunctionPeriodic.cs" />
-    <Compile Include="Assets/Scripts/GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets/TextMesh Pro/Shaders/TMPro.cginc" />

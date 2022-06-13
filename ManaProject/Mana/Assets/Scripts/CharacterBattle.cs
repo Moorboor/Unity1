@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestingHostilePathfinding : MonoBehaviour
+public class CharacterBattle : MonoBehaviour
 {
 
     private const float speed = 20f;
@@ -13,6 +13,7 @@ public class TestingHostilePathfinding : MonoBehaviour
     private State state;
     private string target;
 
+    [SerializeField] private Animation hostile;
     private enum State
     {
         Idle,
@@ -50,6 +51,7 @@ public class TestingHostilePathfinding : MonoBehaviour
 
         if (pathVectorList.Count > 2)
         {
+            hostile.Play("Run");
             Vector3 targetPosition = new Vector3(pathVectorList[1].x, transform.position.y, pathVectorList[1].z);
             float reachedDistance = Vector3.Distance(targetPosition, GetPosition());
 
@@ -62,6 +64,7 @@ public class TestingHostilePathfinding : MonoBehaviour
             {
                 transform.position = targetPosition;
                 onMovementComplete();
+                hostile.Play("Idle");
                 state = State.Idle;
 
             }
@@ -69,6 +72,7 @@ public class TestingHostilePathfinding : MonoBehaviour
         else
         {
             onMovementComplete();
+            hostile.Play("Attack1");
             state = State.Idle;
         }
     }
@@ -114,11 +118,16 @@ public class TestingHostilePathfinding : MonoBehaviour
         for (int i=0; i<2; i++)
         {
         }
-        // Move to Player
-        state = State.MovingToPlayer;
+        if (pathVectorList.Count < 4)
+        {
+            state = State.MovingToPlayer;
+        }
+        else
+        {
+            // if player not in sight, move in direction to node with highest fCost --> Exploring
+            onMovementComplete();
+        }
 
-
-        // if player not in sight, move in direction to node with highest fCost --> Exploring
 
     }
     public void SetPlayerPosition(Vector3 targetPosition, Action onMovementComplete)

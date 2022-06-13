@@ -61,16 +61,10 @@ public class PathNode
     {
         bool value;
 
-        if (agentDic.TryGetValue("CylinderHostile", out value))
+        if (agentDic.TryGetValue("Hostile", out value))
         {
-            if (agentDic["CylinderHostile"] == true)
-            {
-                return x + "," + z + " CylinderHostile";
-            }
-            else
-            {
-                return x + "," + z;
-            }
+            return x + "," + z + "Hostile";
+            
         }
         else
         {
