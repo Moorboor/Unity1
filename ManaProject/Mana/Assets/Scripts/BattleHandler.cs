@@ -22,7 +22,7 @@ public class BattleHandler : MonoBehaviour
     private void Start()
     {
         // Initialize Movement system
-        pathfinding = new Pathfinding(50, 50, 10f);
+        pathfinding = new Pathfinding(50, 50, 6f);
         state = State.WaitingForPlayer;
     }
 

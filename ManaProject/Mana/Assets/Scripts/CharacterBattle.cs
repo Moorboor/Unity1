@@ -6,7 +6,7 @@ using UnityEngine;
 public class CharacterBattle : MonoBehaviour
 {
 
-    private const float speed = 20f;
+    private const float speed = 10f;
     private List<Vector3> pathVectorList;
     private List<PathNode> pathNodeList;
     private Action onMovementComplete;
@@ -19,6 +19,7 @@ public class CharacterBattle : MonoBehaviour
         Idle,
         MovingToPlayer,
         PlayerMoving,
+        AttackPlayer,
     }
 
     private void Start()
@@ -38,6 +39,9 @@ public class CharacterBattle : MonoBehaviour
             case State.PlayerMoving:
                 HandlePlayerMovement(onMovementComplete);
                 break;
+            case State.AttackPlayer:
+                Attack(onMovementComplete);
+                break;
         }
     }
 
@@ -55,7 +59,7 @@ public class CharacterBattle : MonoBehaviour
             Vector3 targetPosition = new Vector3(pathVectorList[1].x, transform.position.y, pathVectorList[1].z);
             float reachedDistance = Vector3.Distance(targetPosition, GetPosition());
 
-            if (reachedDistance > 1f)
+            if (reachedDistance > .5f)
             {
                 Vector3 moveDir = (targetPosition - GetPosition()).normalized;
                 transform.position = GetPosition() + moveDir * speed * Time.deltaTime;
@@ -85,7 +89,7 @@ public class CharacterBattle : MonoBehaviour
             Vector3 targetPosition = new Vector3(pathVectorList[1].x, transform.position.y, pathVectorList[1].z);
             float reachedDistance = Vector3.Distance(targetPosition, GetPosition());
 
-            if (reachedDistance > 1f)
+            if (reachedDistance > .3f)
             {
                 Vector3 moveDir = (targetPosition - GetPosition()).normalized;
                 transform.position = GetPosition() + moveDir * speed * Time.deltaTime;
@@ -102,7 +106,7 @@ public class CharacterBattle : MonoBehaviour
     }
     private void Attack(Action onMovementComplete)
     {
-
+        onMovementComplete();
     }
 
 
@@ -118,14 +122,14 @@ public class CharacterBattle : MonoBehaviour
         for (int i=0; i<2; i++)
         {
         }
-        if (pathVectorList.Count < 4)
+        if (pathVectorList.Count < 10)
         {
             state = State.MovingToPlayer;
         }
         else
         {
             // if player not in sight, move in direction to node with highest fCost --> Exploring
-            onMovementComplete();
+            state = State.AttackPlayer;
         }
 
 
