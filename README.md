@@ -1,4 +1,4 @@
-# Mana
+# Mana and Wizard's Hideout
 
 In the frame of the course "Intro to Unity" I will start to create the prototype of "Mana" with Unity. 
 
